@@ -12,17 +12,22 @@ export default function Navigation() {
   const token = useSelector(selectToken);
 
   const loginLogoutControls = token ? <LoggedIn /> : <LoggedOut />;
+  const myPageOnLogin = token ? (
+    <NavbarItem path="/myhomepage" linkText="My Page" />
+  ) : (
+    <em>Log in to see your page</em>
+  );
 
   return (
     <Navbar bg="light" expand="lg">
       <Navbar.Brand as={NavLink} to="/">
-        YOUR PROJECT NAME
+        Cool story bro!
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav style={{ width: "100%" }} fill>
           <NavbarItem path="/" linkText="Home" />
-          <NavbarItem path="/other" linkText="Other" />
+          {myPageOnLogin}
           {loginLogoutControls}
         </Nav>
       </Navbar.Collapse>
